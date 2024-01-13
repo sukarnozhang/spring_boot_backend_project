@@ -50,7 +50,7 @@ workflows:
       - test:
           requires:
             - build
-      - scan:
+      - scan
           #requires:
             #- test
       - aws-ecr/build_and_push_image:
