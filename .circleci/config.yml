@@ -28,6 +28,7 @@ workflows:
           auth:
             - aws-cli/setup:
                 role_arn: arn:aws:iam::966576247265:role/oidc-ecr
+                role_session_name: mysession@976f3ef2-2d13-4ac4-850a-113d093cdd96
           dockerfile: Dockerfile
           repo: devops
           tag: latest
