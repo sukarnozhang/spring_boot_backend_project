@@ -24,15 +24,19 @@ workflows:
   simple_workflow:
     jobs:
       - aws-ecr/build_and_push_image:
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          aws-access-key-id: ${AWS_ACCESS_KEY_ID}
-          aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
-          context: myContext
-          create-repo: false
-          dockerfile: Dockerfile
-          profile-name: myProfileName
-          repo: Devops
-          tag: latest
+          auth:
+            - aws-cli/setup:
+                profile: oidc-ecr
+                role_arn: arn:aws:iam::966576247265:role/oidc-ecr
+          # account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          # aws-access-key-id: ${AWS_ACCESS_KEY_ID}
+          # aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+          # context: myContext
+          # create-repo: false
+          # dockerfile: Dockerfile
+          # profile-name: myProfileName
+          # repo: Devops
+          # tag: latest
           # #account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           # repo: "${AWS_RESOURCE_NAME_PREFIX}"
           # #region: ${AWS_DEFAULT_REGION}
