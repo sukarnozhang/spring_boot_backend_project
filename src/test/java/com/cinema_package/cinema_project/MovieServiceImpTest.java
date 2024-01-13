@@ -45,4 +45,21 @@ public class MovieServiceImpTest {
             .andExpect(jsonPath("$.id").value(1));
     }
 
+    @DisplayName("Get movie by Id")
+    @Test
+    public void getMovieByIdTest2() throws Exception {
+        // Step 1: Build a GET request to /movie/1
+        RequestBuilder request = MockMvcRequestBuilders.get("/movie/1");
+
+        // Step 2: Perform the request
+        mockMvc.perform(request)
+            // Assert that the status code is 200
+            .andExpect(status().isOk())
+            // Assert that the content type is JSON
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            // Assert that the id returned is 1
+            .andExpect(jsonPath("$.id").value(2));
+    }
+
+
 }
