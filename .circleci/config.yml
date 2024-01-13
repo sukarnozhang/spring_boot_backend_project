@@ -27,21 +27,8 @@ workflows:
           account_id: ${AWS_ACCOUNT_ID}
           auth:
             - aws-cli/setup:
-                role_arn: arn:aws:iam::966576247265:role/oidc-ecr
-                role_session_name: mysession@976f3ef2-2d13-4ac4-850a-113d093cdd96
+                role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+                role_session_name: mysession@${ORGANIZATION_ID}
           dockerfile: Dockerfile
           repo: devops
           tag: latest
-          # #account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          # aws-access-key-id: ${AWS_ACCESS_KEY_ID}
-          # aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
-          # context: myContext
-          # create-repo: false
-          # dockerfile: Dockerfile
-          # profile-name: myProfileName
-          # repo: Devops
-          # tag: latest
-          # #account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-          # repo: "${AWS_RESOURCE_NAME_PREFIX}"
-          # #region: ${AWS_DEFAULT_REGION}
-          # tag: "latest"
