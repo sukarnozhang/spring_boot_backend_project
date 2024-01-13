@@ -29,3 +29,7 @@ workflows:
           dockerfile: Dockerfile
           repo: devops
           tag: latest
+          filters:
+            branches:
+              only:
+                - release
