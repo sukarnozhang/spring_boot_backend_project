@@ -24,11 +24,16 @@ workflows:
   simple_workflow:
     jobs:
       - aws-ecr/build_and_push_image:
-          account_id: ${AWS_ACCOUNT_ID}
-          auth:
-            - aws-cli/setup:
-                role_arn: arn:aws:iam::966576247265:role/aws-service-role/replication.ecr.amazonaws.com/AWSServiceRoleForECRReplication
-          repo: devops
+          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          aws-access-key-id:AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          context: myContext
+          create-repo: false
+          dockerfile: Dockerfile
+          profile-name: myProfileName
+          region: AWS_REGION_ENV_VAR_NAME
+          repo: Devops
+          tag: latest
           # #account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           # repo: "${AWS_RESOURCE_NAME_PREFIX}"
           # #region: ${AWS_DEFAULT_REGION}
