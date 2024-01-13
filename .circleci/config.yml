@@ -26,7 +26,6 @@ workflows:
       - aws-ecr/build_and_push_image:
           auth:
             - aws-cli/setup:
-                profile: oidc-ecr
                 role_arn: arn:aws:iam::966576247265:role/oidc-ecr
           # account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           # aws-access-key-id: ${AWS_ACCESS_KEY_ID}
