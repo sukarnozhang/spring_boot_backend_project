@@ -27,9 +27,9 @@ workflows:
           auth:
             - aws-cli/setup:
                 role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
-            - dockerfile: /Users/sukarno/Desktop/sctp_java/backend/backend_project_spring_boot/Dockerfile/Dockerfile
-            - repo: devops
-            - tag: latest
+          dockerfile: Dockerfile
+          repo: devops
+          tag: latest
           # account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
           # aws-access-key-id: ${AWS_ACCESS_KEY_ID}
           # aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
