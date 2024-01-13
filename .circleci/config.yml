@@ -5,29 +5,27 @@ orbs:
   aws-ecr: circleci/aws-ecr@9.0
   docker: circleci/docker@2.4.0
 
-jobs:
-  build_and_push:
-    - aws-ecr/build_and_push_image:
-        account_id: ${AWS_ACCOUNT_ID}
-        auth:
-          - aws-cli/setup:
-              role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
-              role_session_name: mysession@${ORGANIZATION_ID}
-        dockerfile: Dockerfile
-        repo: devops
-        tag: latest
+# jobs:
+#   build_and_push:
+#     - aws-ecr/build_and_push_image:
+#         account_id: ${AWS_ACCOUNT_ID}
+#         auth:
+#           - aws-cli/setup:
+#               role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+#               role_session_name: mysession@${ORGANIZATION_ID}
+#         dockerfile: Dockerfile
+#         repo: devops
+#         tag: latest
 
 workflows:
   simple_workflow:
     jobs:
-      - build_and_push
-    # jobs:
-    #   - aws-ecr/build_and_push_image:
-    #       account_id: ${AWS_ACCOUNT_ID}
-    #       auth:
-    #         - aws-cli/setup:
-    #             role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
-    #             role_session_name: mysession@${ORGANIZATION_ID}
-    #       dockerfile: Dockerfile
-    #       repo: devops
-    #       tag: latest
+      - aws-ecr/build_and_push_image:
+          account_id: ${AWS_ACCOUNT_ID}
+          auth:
+            - aws-cli/setup:
+                role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+                role_session_name: mysession@${ORGANIZATION_ID}
+          dockerfile: Dockerfile
+          repo: devops
+          tag: latest
