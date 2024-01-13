@@ -17,3 +17,8 @@ jobs:
           root: .
           paths:
             - .
+
+workflows:
+  simple_workflow:
+    jobs:
+      - build-and-test:
