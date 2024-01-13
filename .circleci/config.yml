@@ -29,18 +29,16 @@ jobs:
           name: Build
           command: mvn test
 
-
-
-#   build_and_push:
-#     - aws-ecr/build_and_push_image:
-#         account_id: ${AWS_ACCOUNT_ID}
-#         auth:
-#           - aws-cli/setup:
-#               role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
-#               role_session_name: mysession@${ORGANIZATION_ID}
-#         dockerfile: Dockerfile
-#         repo: devops
-#         tag: latest
+  scan:
+    docker:
+      - image: cimg/openjdk:19.0.1
+    steps:
+      - checkout
+      - setup_remote_docker
+      - docker/check
+      - run: docker build -t $IMAGE_NAME .
+      - snyk/scan:
+          docker-image-name: $IMAGE_NAME
 
 workflows:
   simple_workflow:
@@ -49,6 +47,9 @@ workflows:
       - test:
           requires:
             - build
+      - scan:
+          requires:
+            - test
       - aws-ecr/build_and_push_image:
           account_id: ${AWS_ACCOUNT_ID}
           auth:
