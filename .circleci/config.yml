@@ -4,7 +4,7 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
 
 jobs:
-  build-and-test:
+  build:
     description: "Setup Spring boot application and run tests"
     docker:
       - image: cimg/openjdk:19.0.1
@@ -21,4 +21,4 @@ jobs:
 workflows:
   simple_workflow:
     jobs:
-      - build-and-test:
+      - build
