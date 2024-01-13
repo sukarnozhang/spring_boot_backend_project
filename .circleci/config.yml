@@ -50,9 +50,9 @@ workflows:
       - test:
           requires:
             - build
-      - scan
-          #requires:
-            #- test 
+      - scan:
+          requires:
+            - test 
       - aws-ecr/build_and_push_image:
           account_id: ${AWS_ACCOUNT_ID}
           auth:
@@ -67,4 +67,4 @@ workflows:
               only:
                 - develop
           requires:
-            - build
+            - test
