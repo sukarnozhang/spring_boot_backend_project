@@ -19,8 +19,8 @@ jobs:
       #     root: .
       #     paths:
       #       - .
-    test:
-      description: "test springboot"
+  test:
+    description: "test springboot"
 
 
 #   build_and_push:
