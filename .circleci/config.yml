@@ -7,7 +7,7 @@ orbs:
 
 jobs:
   build:
-    description: "Setup Spring boot applications"
+    description: "build docker"
     docker:
       - image: cimg/openjdk:19.0.1
     steps:
@@ -15,10 +15,14 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - .
+    test:
+      description: "test springboot"
+
+
 #   build_and_push:
 #     - aws-ecr/build_and_push_image:
 #         account_id: ${AWS_ACCOUNT_ID}
@@ -46,6 +50,6 @@ workflows:
           filters:
             branches:
               only:
-                - release
+                - develop
           requires:
             - build
