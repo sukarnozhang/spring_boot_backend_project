@@ -5,30 +5,29 @@ orbs:
   aws-ecr: circleci/aws-ecr@9.0
   docker: circleci/docker@2.4.0
 
-
-  # build:
-  #   description: "Setup Spring boot application and run tests"
-  #   docker:
-  #     - image: cimg/openjdk:19.0.1
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Build
-  #         command: mvn -B -DskipTests clean package
-  #     - persist_to_workspace:
-  #         root: .
-  #         paths:
-  #           - .
+jobs:
+  build:
+    - aws-ecr/build_and_push_image:
+        account_id: ${AWS_ACCOUNT_ID}
+        auth:
+          - aws-cli/setup:
+              role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+              role_session_name: mysession@${ORGANIZATION_ID}
+        dockerfile: Dockerfile
+        repo: devops
+        tag: latest
 
 workflows:
   simple_workflow:
     jobs:
-      - aws-ecr/build_and_push_image:
-          account_id: ${AWS_ACCOUNT_ID}
-          auth:
-            - aws-cli/setup:
-                role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
-                role_session_name: mysession@${ORGANIZATION_ID}
-          dockerfile: Dockerfile
-          repo: devops
-          tag: latest
+      - build
+    # jobs:
+    #   - aws-ecr/build_and_push_image:
+    #       account_id: ${AWS_ACCOUNT_ID}
+    #       auth:
+    #         - aws-cli/setup:
+    #             role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+    #             role_session_name: mysession@${ORGANIZATION_ID}
+    #       dockerfile: Dockerfile
+    #       repo: devops
+    #       tag: latest
