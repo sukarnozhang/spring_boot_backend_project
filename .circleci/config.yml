@@ -15,10 +15,10 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test:
     description: "test springboot"
 
