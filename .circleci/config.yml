@@ -65,6 +65,6 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - release
           requires:
             - test
