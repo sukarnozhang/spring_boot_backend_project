@@ -21,6 +21,14 @@ jobs:
             - .
   test:
     description: "test springboot"
+    docker:
+      - image: cimg/openjdk:19.0.1
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: mvn test
+
 
 
 #   build_and_push:
@@ -38,6 +46,9 @@ workflows:
   simple_workflow:
     jobs:
       - build
+      - test:
+          requires:
+            -build
       - aws-ecr/build_and_push_image:
           account_id: ${AWS_ACCOUNT_ID}
           auth:
