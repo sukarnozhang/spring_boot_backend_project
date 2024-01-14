@@ -70,9 +70,13 @@ workflows:
           requires:
             - test
       - aws-ecs/deploy-service-update:
+          auth:
+            - aws-cli/setup:
+                role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+                role_session_name: mysession@${ORGANIZATION_ID}
+          cluster: test-cluster
+          container_image_name_updates: container=test-service,tag=latest
+          family: test-service
           requires:
-            - aws-ecr/build-and-push-image # only run this job once aws-ecr/build-and-push-image has completed
-          family: "test-service"
-          cluster: "test-cluster"
-          container-image-name-updates: "container=test-service,tag=latest"
+            - aws-ecr/build-and-push-image
 #
