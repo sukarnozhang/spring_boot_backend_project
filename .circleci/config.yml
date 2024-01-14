@@ -76,7 +76,7 @@ workflows:
           ##       role_session_name: mysession@${ORGANIZATION_ID}
           cluster-name: test
           family: test   ### name of the task definition (image URL)
-          service_name: test
+          service-name: test
           # requires:
           #   - aws-ecr/build_and_push_image
 #
