@@ -77,5 +77,5 @@ workflows:
           cluster-name: test
           family: test
           requires:
-            - aws-ecr/build-and-push-image
+            - aws-ecr/build_and_push_image
 #
