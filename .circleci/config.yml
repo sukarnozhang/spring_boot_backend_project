@@ -76,6 +76,7 @@ workflows:
                 role_session_name: mysession@${ORGANIZATION_ID}
           cluster-name: test
           container_image_name_updates: container=test,tag=latest
+          family: test
           requires:
             - aws-ecr/build-and-push-image
 #
