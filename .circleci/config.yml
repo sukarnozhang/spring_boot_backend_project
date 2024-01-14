@@ -70,12 +70,11 @@ workflows:
           requires:
             - test
       - aws-ecs/deploy-service-update:
-          auth:
-            - aws-cli/setup:
-                role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
-                role_session_name: mysession@${ORGANIZATION_ID}
+          # auth:
+          #   - aws-cli/setup:
+          #       role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+          #       role_session_name: mysession@${ORGANIZATION_ID}
           cluster-name: test
-          container_image_name_updates: container=test,tag=latest
           family: test
           requires:
             - aws-ecr/build-and-push-image
