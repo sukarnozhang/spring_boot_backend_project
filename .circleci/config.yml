@@ -72,7 +72,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           # auth:
           #   - aws-cli/setup:
-          #        role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
+          #      role_arn: arn:aws:iam::${AWS_ACCOUNT_ID}:role/oidc-ecr
           ##       role_session_name: mysession@${ORGANIZATION_ID}
           cluster-name: test
           family: test   ### name of the task definition (image URL)
