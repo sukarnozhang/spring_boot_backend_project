@@ -59,7 +59,7 @@ public class MovieServiceImpTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             // Assert that the id returned is 1
             //chnage to 2 to simulate failure
-            .andExpect(jsonPath("$.id").value(1));
+            .andExpect(jsonPath("$.id").value(2));
     }
 
 
