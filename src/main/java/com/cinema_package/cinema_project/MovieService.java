@@ -1,7 +1,6 @@
 package com.cinema_package.cinema_project;
 import java.util.List;
 
-
 public interface MovieService {
     List<Movie> getAllMovies();
     Movie getMoviesById(Integer id);
