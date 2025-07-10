@@ -48,23 +48,15 @@ public class Movie {
     @Column(name = "date")
     private LocalDate date;
 
-    // Location where the movie is being screened
-    @Column(name = "location")  // Maps to 'location' column in the table
+    @Column(name = "location")
     private String location;
 
-    // Total number of seats in the movie theater for the specific movie
-    @Range(min = 50, max = 200, message = "Number of seats should be between 50 and 200")  // Validation on range
-    @Column(name = "totalseats")  // Maps to 'totalseats' column in the table
+    @Range(min = 50, max = 200, message = "Number of seats should be between 50 and 200")
+    @Column(name = "totalseats") 
     private int totalSeats;
 
-    // Number of available seats for booking
-    @Range(min = 50, max = 200, message = "Number of available seats should be between 50 and 200")  // Validation on range
-    @Column(name = "availableseats")  // Maps to 'availableseats' column in the table
-    private int availableSeats;
-
-    // Ticket price for the movie
-    @Range(min = 0, max = 200, message = "Price should be between 0 and 200")  // Validation on range
-    @Column(name = "price")  // Maps to 'price' column in the table
+    @Range(min = 0, max = 200, message = "Price should be between 0 and 200")
+    @Column(name = "price")
     private int price;
 
     // Default constructor (used by JPA for instantiating entities)
@@ -73,5 +65,5 @@ public class Movie {
     // One-to-many relationship with the Booking entity
     // A movie can have multiple bookings associated with it
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)  // Cascade all operations to related bookings
-    private List<Booking> booking;  // List of bookings for the movie
+    private List<Booking> booking; 
 }
