@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.Range;
 @Entity
 @Getter
 @Setter
-@Table(name = "movie")  // Specifies the table name for this entity
+@Table(name = "movie")  
 public class Movie {
 
     // Unique identifier for each movie
