@@ -30,8 +30,8 @@ public class MovieController {
     @GetMapping
     public List<Movie> getAllMovies() {
         List<Movie> allMovies = movieService.getAllMovies();  // Fetch all movies from service
-        logger.info("🟢 Get All Movies Done");  // Log the operation
-        return allMovies;  // Return the list of movies
+        logger.info("🟢 Get All Movies Done");  
+        return allMovies;  
     }
 
     // Endpoint to retrieve a movie by its ID.
@@ -74,7 +74,7 @@ public class MovieController {
     // Endpoint to update an existing movie.
     @PutMapping("/{id}")
     public ResponseEntity<Movie> updateMovie(@PathVariable Integer id, @RequestBody Movie movie) {
-        Movie updatedMovie = movieService.updateMovie(id, movie);  // Update movie via service
+        Movie updatedMovie = movieService.updateMovie(id, movie); 
         logger.info("🟢 Update Movie with id={} Done", id); 
         return new ResponseEntity<>(updatedMovie, HttpStatus.OK); 
     }

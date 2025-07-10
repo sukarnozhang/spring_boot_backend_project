@@ -64,6 +64,6 @@ public class Movie {
 
     // One-to-many relationship with the Booking entity
     // A movie can have multiple bookings associated with it
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)  // Cascade all operations to related bookings
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)  // Cascade all operations (update,delete) to related bookings
     private List<Booking> booking; 
 }
