@@ -1,6 +1,4 @@
 package com.cinema_package.cinema_project;
-//import jakarta.persistence.*;
-//import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.List;
 

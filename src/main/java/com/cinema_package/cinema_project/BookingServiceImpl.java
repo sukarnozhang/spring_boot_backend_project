@@ -13,9 +13,8 @@ public class BookingServiceImpl implements BookingService {
     // Repository (communication with database) used for accessing booking data from the database
     private final BookingRepository bookingRepository;
 
-    /**
-     * Constructor for dependency injection of BookingRepository.
-     */
+
+    // Constructor for dependency injection of BookingRepository.
     public BookingServiceImpl(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
@@ -29,9 +28,7 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.save(booking);
     }
 
-    /**
-     * Retrieves all bookings from the database.
-     */
+     // Retrieves all bookings from the database.
     @Override 
     public List<Booking> getBooking() {
         return bookingRepository.findAll();

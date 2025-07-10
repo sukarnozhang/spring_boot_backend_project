@@ -28,19 +28,15 @@ public class BookingController {
     // Booking service to handle business logic
     private final BookingService bookingService;
 
-    /**
-     * Constructor-based dependency injection of BookingService.
-     */
+    
+    // Constructor-based dependency injection of BookingService.
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
-    /**
-     * POST endpoint to create a new booking.
-     * 
-     * booking Booking object received from the request body
-     * ResponseEntity containing the newly created booking and HTTP status 201
-     */
+     // POST endpoint to create a new booking.
+     // booking Booking object received from the request body
+     // ResponseEntity containing the newly created booking and HTTP status 201
     @PostMapping("")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         Booking newBooking = bookingService.createBooking(booking);
@@ -48,11 +44,8 @@ public class BookingController {
         return new ResponseEntity<>(newBooking, HttpStatus.CREATED);
     }
 
-    /**
-     * GET endpoint to retrieve all bookings.
-     * 
-     * return ResponseEntity containing a list of bookings and HTTP status 200
-     */
+     // GET endpoint to retrieve all bookings.
+     // return ResponseEntity containing a list of bookings and HTTP status 200
     @GetMapping("")
     public ResponseEntity<List<Booking>> getBooking() {
         List<Booking> bookings = bookingService.getBooking();
