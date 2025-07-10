@@ -1,4 +1,5 @@
 package com.cinema_package.cinema_project;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,18 +17,22 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
+/**
+ * Entity class representing a Movie in the cinema database.
+ * This class is mapped to the 'movie' table in the database.
+ */
 @Entity
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@Table(name = "movie")
+@Table(name = "movie")  // Specifies the table name for this entity
 public class Movie {
+
+    // Unique identifier for each movie
     @Id
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "First name is mandatory")
+    @NotBlank(message = "Movie title is mandatory")
     @Column(name = "title")
     private String title;
 
@@ -43,26 +48,30 @@ public class Movie {
     @Column(name = "date")
     private LocalDate date;
 
-    @Column(name = "location")
+    // Location where the movie is being screened
+    @Column(name = "location")  // Maps to 'location' column in the table
     private String location;
 
-    @Range(min = 50, max = 200, message = "Number of Seats should be between 50 and 200")
-    @Column(name = "totalseats")
+    // Total number of seats in the movie theater for the specific movie
+    @Range(min = 50, max = 200, message = "Number of seats should be between 50 and 200")  // Validation on range
+    @Column(name = "totalseats")  // Maps to 'totalseats' column in the table
     private int totalSeats;
 
-    @Range(min = 50, max = 200, message = "Number of Seats should be between 50 and 200")
-    @Column(name = "availablesetas")
+    // Number of available seats for booking
+    @Range(min = 50, max = 200, message = "Number of available seats should be between 50 and 200")  // Validation on range
+    @Column(name = "availableseats")  // Maps to 'availableseats' column in the table
     private int availableSeats;
 
-    @Range(min = 0, max = 200, message = "Price should be between 0 and 200")
-    @Column(name = "price")
+    // Ticket price for the movie
+    @Range(min = 0, max = 200, message = "Price should be between 0 and 200")  // Validation on range
+    @Column(name = "price")  // Maps to 'price' column in the table
     private int price;
 
+    // Default constructor (used by JPA for instantiating entities)
     public Movie() {}
 
-    //private static final Logger logger = (Logger) LoggerFactory.getLogger(CinemaProjectApplication.class);
-
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private List<Booking> booking;
-  
+    // One-to-many relationship with the Booking entity
+    // A movie can have multiple bookings associated with it
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)  // Cascade all operations to related bookings
+    private List<Booking> booking;  // List of bookings for the movie
 }
