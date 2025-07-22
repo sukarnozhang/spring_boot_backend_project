@@ -1,46 +1,50 @@
 package com.cinema_package.cinema_project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import java.util.Optional;
-
-// import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/**
+ * Unit tests for BookingServiceImpl using Mockito to mock dependencies.
+ */
 @SpringBootTest
 public class BookingServiceImpTest {
     
     @Mock
-    private BookingRepository bookingRepository;
+    private BookingRepository bookingRepository;  // Mock BookingRepository dependency
 
     @InjectMocks
-    BookingServiceImpl bookingService;
+    private BookingServiceImpl bookingService;    // Service under test, with mocks injected
 
+    /**
+     * Test the creation of a booking.
+     * Verifies that the booking is saved correctly and that the repository save method is called once.
+     */
     @Test
     public void createBookingTest() {
 
-        // 1. SETUP
-        Booking booking = Booking.builder().booking_id(100).ticket_number(2).build();
+        // 1. Setup: create a booking object to be saved
+        Booking booking = Booking.builder()
+                                 .booking_id(100)
+                                 .ticket_number(2)
+                                 .build();
 
-        // mock the save method 
-        when((bookingRepository.save(booking))).thenReturn(booking);
+        // Mock behavior: when save is called with booking, return booking
+        when(bookingRepository.save(booking)).thenReturn(booking);
 
-        // 2. EXECUTE
+        // 2. Execute: call the service method
         Booking savedBooking = bookingService.createBooking(booking);
 
-        // 3. ASSERT
-        assertEquals(booking, savedBooking, "The saved booking should be the same as the new customer.");
+        // 3. Assert: check returned booking equals the input booking
+        assertEquals(booking, savedBooking, "The saved booking should match the original booking.");
 
-        // also verify that the save method of the customer repository is called once only.
+        // Verify that save was called exactly once with the booking object
         verify(bookingRepository, times(1)).save(booking);
     }
-
 }
